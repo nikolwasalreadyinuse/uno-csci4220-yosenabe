@@ -12,11 +12,7 @@ destination(X,Y,XX,YY) :- number(X,Y,N), area(XX,YY,A), Y = YY.
 1 { target(X,Y,XX,YY) : destination(X,Y,XX,YY) } 1 :- number(X,Y,N).
 
 %BEGINNING OF QUESTION 2:
-
-%area(XX, YY, A) :- target(X,Y,XX,YY), area(XX, YY, A).
-
-% according to instructions: target = a number in cell (X,Y) is moved to the cell (XX, YY).
-
+% according to instructions: target(X,Y,XX,YY) = a number in cell (X,Y) is moved to the cell (XX, YY).
 %a helper predicate which determines if a target has been filled. 
 has_target(A) :- target(X,Y,XX,YY), area(XX,YY,A).
 
