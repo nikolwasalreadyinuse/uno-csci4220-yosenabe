@@ -22,12 +22,16 @@ has_target(A) :- target(X,Y,XX,YY), area(XX,YY,A).
 
 %BEGINNING OF QUESTION 3:
 
+% identify every cell along a horizontal path
 %X, Y = starting position; XX, YY = destination; PX, PY = a cell along the path.
-path(X,Y, XX, YY, PX, PY) :- number(X,Y,N), target(X,Y,XX,YY), cell(PX,PY), PX > X, PX < XX.
-path(X,Y, XX, YY, PX, PY) :- number(X,Y,N), target(X,Y,XX,YY), cell(PX,PY), PX < X, PX > XX.
 
-path(X,Y, XX, YY, PX, PY) :- number(X,Y,N), target(X,Y,XX,YY), cell(PX,PY), PY > Y, PY < YY.
-path(X,Y, XX, YY, PX, PY) :- number(X,Y,N), target(X,Y,XX,YY), cell(PX,PY), PY < Y, PY > YY.
+path(X,Y, XX, YY, PX, Y) :- target(X,Y,XX,YY), cell(PX,Y), PX >= X, PX <= XX.
+path(X,Y, XX, YY, PX, Y) :- target(X,Y,XX,YY), cell(PX,Y), PX <= X, PX >= XX.
+
+% identify every cell along a vertical path
+
+path(X,Y, XX, YY, X, PY) :- target(X,Y,XX,YY), cell(X,PY), PY >= Y, PY <= YY.
+path(X,Y, XX, YY, X, PY) :- target(X,Y,XX,YY), cell(X,PY), PY <= Y, PY >= YY.
 
 %make sure the paths do not cross
 :- path(X,Y, XX, YY, PX, PY), path(A,B, AA, BB, PX, PY), X != A.
